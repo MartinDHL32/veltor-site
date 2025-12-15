@@ -75,34 +75,28 @@ function initSmoothScroll() {
 
 /* -------------------- Custom Cursor -------------------- */
 function initCustomCursor() {
-    const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursor-follower');
+    var cursor = document.getElementById('cursor');
+    var follower = document.getElementById('cursor-follower');
     
-    if (!cursor || !follower) {
-        console.log('Cursor elements not found');
-        return;
-    }
+    if (!cursor || !follower) return;
     
-    // Always show on desktop
-    cursor.style.display = 'block';
-    follower.style.display = 'block';
+    var mx = 0, my = 0, fx = 0, fy = 0;
     
-    let fx = 0, fy = 0;
+    document.onmousemove = function(e) {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+    };
     
-    window.addEventListener('mousemove', function(e) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    
-    // Follower animation
-    setInterval(function() {
-        const cx = parseFloat(cursor.style.left) || 0;
-        const cy = parseFloat(cursor.style.top) || 0;
-        fx += (cx - fx) * 0.1;
-        fy += (cy - fy) * 0.1;
+    function move() {
+        fx += (mx - fx) * 0.15;
+        fy += (my - fy) * 0.15;
         follower.style.left = fx + 'px';
         follower.style.top = fy + 'px';
-    }, 16);
+        requestAnimationFrame(move);
+    }
+    move();
 }
 
 /* -------------------- Scroll Animations -------------------- */

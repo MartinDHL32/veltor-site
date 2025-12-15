@@ -150,9 +150,8 @@ input, textarea, select {
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
-    display: none;
-    top: 0;
-    left: 0;
+    top: -100px;
+    left: -100px;
 }
 
 .cursor {
@@ -166,7 +165,7 @@ input, textarea, select {
     height: 40px;
     border: 2px solid rgba(255, 255, 255, 0.6);
     background: transparent;
-    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, top 0.05s ease, left 0.05s ease;
 }
 
 .cursor.active {
@@ -177,6 +176,12 @@ input, textarea, select {
     width: 60px;
     height: 60px;
     border-color: var(--primary-blue);
+}
+
+@media (hover: none), (pointer: coarse) {
+    .cursor, .cursor-follower {
+        display: none !important;
+    }
 }
 
 /* -------------------- Container -------------------- */
