@@ -5,7 +5,6 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initLoader();
     initNavbar();
     initSmoothScroll();
     initCustomCursor();
@@ -13,31 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initContactForm();
 });
-
-/* -------------------- Loader -------------------- */
-function initLoader() {
-    const loader = document.getElementById('loader');
-    
-    if (!loader) return;
-    
-    // Hide loader after a short delay
-    const hideLoader = () => {
-        loader.classList.add('hidden');
-        document.body.style.overflow = '';
-    };
-    
-    // Try to hide on window load
-    if (document.readyState === 'complete') {
-        setTimeout(hideLoader, 500);
-    } else {
-        window.addEventListener('load', () => {
-            setTimeout(hideLoader, 500);
-        });
-    }
-    
-    // Fallback: force hide after 2 seconds max
-    setTimeout(hideLoader, 2000);
-}
 
 /* -------------------- Navbar -------------------- */
 function initNavbar() {
