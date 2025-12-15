@@ -78,57 +78,31 @@ function initCustomCursor() {
     const cursor = document.getElementById('cursor');
     const follower = document.getElementById('cursor-follower');
     
-    if (!cursor || !follower) return;
-    
-    // Skip on touch devices
-    if ('ontouchstart' in window) return;
-    
-    let mouseX = 0;
-    let mouseY = 0;
-    let followerX = 0;
-    let followerY = 0;
-    let started = false;
-    
-    // Show cursors and track mouse
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        if (!started) {
-            started = true;
-            followerX = mouseX;
-            followerY = mouseY;
-            cursor.style.display = 'block';
-            follower.style.display = 'block';
-        }
-        
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-    });
-    
-    // Animate follower
-    function animate() {
-        if (started) {
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            follower.style.left = followerX + 'px';
-            follower.style.top = followerY + 'px';
-        }
-        requestAnimationFrame(animate);
+    if (!cursor || !follower) {
+        console.log('Cursor elements not found');
+        return;
     }
-    animate();
     
-    // Hover effects
-    document.querySelectorAll('a, button, .service-card, .project-card, .pricing-card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
-            follower.classList.add('active');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-            follower.classList.remove('active');
-        });
+    // Always show on desktop
+    cursor.style.display = 'block';
+    follower.style.display = 'block';
+    
+    let fx = 0, fy = 0;
+    
+    window.addEventListener('mousemove', function(e) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     });
+    
+    // Follower animation
+    setInterval(function() {
+        const cx = parseFloat(cursor.style.left) || 0;
+        const cy = parseFloat(cursor.style.top) || 0;
+        fx += (cx - fx) * 0.1;
+        fy += (cy - fy) * 0.1;
+        follower.style.left = fx + 'px';
+        follower.style.top = fy + 'px';
+    }, 16);
 }
 
 /* -------------------- Scroll Animations -------------------- */
