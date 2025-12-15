@@ -546,11 +546,20 @@
                     <h2 class="section-title">Parlons de votre <span class="gradient-text">projet</span></h2>
                     <p class="contact-desc">Remplissez le formulaire ou contactez-nous directement. Nous vous répondons sous 24h.</p>
                     <div class="contact-methods">
-                        <a href="mailto:contact@veltor.fr" class="contact-method">
+                        <div class="contact-method" id="email-contact" style="cursor: pointer;">
                             <div class="method-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
-                            <div class="method-content"><span class="method-label">Email</span><span class="method-value">contact@veltor.fr</span></div>
-                        </a>
+                            <div class="method-content"><span class="method-label">Email</span><span class="method-value" id="email-display"></span></div>
+                        </div>
                     </div>
+                    <script>
+                        (function(){
+                            var u = 'contact';
+                            var d = 'veltor.fr';
+                            var e = u + '@' + d;
+                            document.getElementById('email-display').textContent = e;
+                            document.getElementById('email-contact').onclick = function(){ window.location.href = 'mai' + 'lto:' + e; };
+                        })();
+                    </script>
                 </div>
                 <form class="contact-form" id="contact-form" action="https://formspree.io/f/mkgdably" method="POST">
                     <div class="form-group"><label for="name">Nom complet</label><input type="text" id="name" name="name" placeholder="Jean Dupont" required></div>
