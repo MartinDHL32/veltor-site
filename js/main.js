@@ -83,19 +83,25 @@ function initCustomCursor() {
     // Check if device supports hover (not touch)
     if (!window.matchMedia('(hover: hover)').matches) return;
     
-    // Show cursors
-    cursor.style.display = 'block';
-    follower.style.display = 'block';
-    
     let mouseX = 0;
     let mouseY = 0;
     let followerX = 0;
     let followerY = 0;
+    let started = false;
     
     // Track mouse position
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        
+        // First move: show cursors and set initial position
+        if (!started) {
+            started = true;
+            followerX = mouseX;
+            followerY = mouseY;
+            cursor.style.display = 'block';
+            follower.style.display = 'block';
+        }
         
         // Move cursor directly (no lag)
         cursor.style.left = mouseX + 'px';
@@ -104,10 +110,12 @@ function initCustomCursor() {
     
     // Animate follower with lag
     function animateFollower() {
-        followerX += (mouseX - followerX) * 0.15;
-        followerY += (mouseY - followerY) * 0.15;
-        follower.style.left = followerX + 'px';
-        follower.style.top = followerY + 'px';
+        if (started) {
+            followerX += (mouseX - followerX) * 0.12;
+            followerY += (mouseY - followerY) * 0.12;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+        }
         requestAnimationFrame(animateFollower);
     }
     animateFollower();
