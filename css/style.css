@@ -735,6 +735,39 @@ input, textarea, select {
     padding: var(--section-padding) 0;
 }
 
+/* Notice anonymisation */
+.anonymized-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.anonymized-notice svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+.anonymized-notice span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+.anonymized-notice strong {
+    color: var(--text-primary);
+}
+
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -753,33 +786,34 @@ input, textarea, select {
 .project-card:hover {
     transform: translateY(-8px);
     border-color: var(--border-hover);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .project-large {
     grid-row: span 2;
 }
 
-/* Mockup Browser Styles */
+/* Mockup Browser */
 .project-mockup {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: 280px;
     background: var(--bg-tertiary);
     overflow: hidden;
 }
 
 .project-large .project-mockup {
     height: 100%;
-    min-height: 400px;
+    min-height: 450px;
 }
 
 .mockup-browser {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 16px;
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
+    padding: 8px 12px;
+    background: #1a1a1a;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .browser-dots {
@@ -791,271 +825,495 @@ input, textarea, select {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--bg-tertiary);
 }
 
-.browser-dots span:nth-child(1) { background: #EF4444; }
-.browser-dots span:nth-child(2) { background: #F59E0B; }
-.browser-dots span:nth-child(3) { background: #22C55E; }
+.browser-dots span:nth-child(1) { background: #ff5f57; }
+.browser-dots span:nth-child(2) { background: #ffbd2e; }
+.browser-dots span:nth-child(3) { background: #28ca42; }
 
 .browser-url {
     flex: 1;
-    padding: 6px 12px;
-    background: var(--bg-tertiary);
-    border-radius: 6px;
-    font-size: 0.75rem;
-    color: var(--text-muted);
+    padding: 5px 12px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
     font-family: var(--font-mono);
 }
 
-.mockup-content {
-    padding: 0;
-    height: calc(100% - 42px);
+/* Mockup Screen */
+.mockup-screen {
+    height: calc(100% - 34px);
     overflow: hidden;
+    font-size: 0.75rem;
 }
 
-/* Mock Navigation */
-.mock-nav {
+/* Screen Nav */
+.screen-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
-    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 16px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
 }
 
-.mock-nav.light {
-    background: rgba(255, 255, 255, 0.95);
+.screen-nav.light-nav {
+    background: rgba(255,255,255,0.95);
 }
 
-.mock-nav.dark {
-    background: rgba(0, 0, 0, 0.8);
+.screen-nav.dark-nav {
+    background: rgba(0,0,0,0.8);
 }
 
-.mock-logo {
-    font-size: 0.85rem;
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.brand-icon {
+    font-size: 1rem;
+}
+
+.brand-text {
     font-weight: 600;
-    color: var(--text-primary);
+    color: white;
+    font-size: 0.8rem;
 }
 
-.mock-nav.light .mock-logo {
-    color: var(--bg-primary);
+.brand-text.dark-text {
+    color: #1a1a1a;
 }
 
-.mock-menu {
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.65rem;
+}
+
+.nav-links.dark-links {
+    color: #666;
+}
+
+.nav-btn {
+    padding: 4px 10px;
+    background: var(--primary-gradient);
+    border-radius: 4px;
+    color: white !important;
+    font-weight: 500;
+}
+
+.nav-btn.pink-btn {
+    background: linear-gradient(135deg, #ec4899, #db2777);
+}
+
+.nav-btn.orange-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Screen Hero */
+.screen-hero {
+    padding: 20px 16px;
+}
+
+.screen-hero h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.screen-hero p {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+}
+
+/* Buttons Mock */
+.btn-mock {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 500;
+}
+
+.btn-mock.primary {
+    background: var(--primary-gradient);
+    color: white;
+}
+
+.btn-mock.secondary {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    margin-left: 8px;
+}
+
+.btn-mock.pink-mock {
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    color: white;
+}
+
+/* ===== COIFFURE ===== */
+.coiffure-screen {
+    background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+}
+
+.coiffure-hero {
+    display: flex;
+    padding: 16px;
+    gap: 16px;
+}
+
+.hero-left {
+    flex: 1;
+}
+
+.hero-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    background: rgba(139, 92, 246, 0.2);
+    border-radius: 3px;
+    font-size: 0.6rem;
+    color: #a78bfa;
+    margin-bottom: 8px;
+}
+
+.hero-buttons {
     display: flex;
     gap: 8px;
+    margin-top: 12px;
 }
 
-.mock-menu span {
-    width: 24px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 2px;
+.hero-right {
+    width: 40%;
 }
 
-.mock-nav.light .mock-menu span {
-    background: rgba(0, 0, 0, 0.3);
+.hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 80px;
+    border-radius: 8px;
 }
 
-/* Coiffure Mockup */
-.mockup-coiffure .mockup-content {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+.coiffure-img {
+    background: linear-gradient(135deg, #4a3f6b 0%, #2d2444 100%);
 }
 
-.mock-hero-coiffure {
-    padding: 30px 16px;
-    text-align: center;
-}
-
-.mock-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    line-height: 1.3;
-}
-
-.mock-btn {
-    width: 100px;
-    height: 32px;
-    background: var(--primary-gradient);
-    border-radius: 6px;
-    margin: 0 auto;
-}
-
-.mock-services {
+.screen-services {
     display: flex;
     gap: 8px;
     padding: 0 16px;
 }
 
-.mock-service-item {
+.service-mock {
     flex: 1;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-}
-
-/* Esthétique Mockup */
-.mockup-esthetique .mockup-content {
-    background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
-}
-
-.mock-hero-esthe {
-    padding: 40px 16px;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
     text-align: center;
 }
 
-.mock-title-light {
-    font-size: 1rem;
+.service-icon-mock {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.service-mock span {
+    display: block;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.price-mock {
+    color: #a78bfa !important;
     font-weight: 600;
+    margin-top: 4px;
+}
+
+/* ===== BEAUTE ===== */
+.beaute-screen {
+    background: linear-gradient(180deg, #fdf2f8 0%, #fce7f3 100%);
+}
+
+.beaute-hero {
+    padding: 24px 16px;
+    text-align: center;
+}
+
+.beaute-content h3 {
     color: #831843;
+    font-size: 1.2rem;
+}
+
+.beaute-content p {
+    color: #9d174d;
     margin-bottom: 16px;
 }
 
-.mock-btn-light {
-    width: 100px;
-    height: 32px;
-    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
-    border-radius: 6px;
-    margin: 0 auto;
+.beaute-cards {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px;
 }
 
-/* Artisan Mockup */
-.mockup-artisan .mockup-content {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+.beaute-card {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.mock-hero-artisan {
-    padding: 30px 16px;
+.beaute-card-img {
+    height: 50px;
+    background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+}
+
+.beaute-card span {
+    display: block;
+    padding: 8px;
+    font-size: 0.65rem;
+    color: #831843;
+    font-weight: 500;
+}
+
+/* ===== ARTISAN ===== */
+.artisan-screen {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+}
+
+.artisan-hero {
+    padding: 20px 16px;
     text-align: center;
     position: relative;
 }
 
-.mock-badge {
-    position: absolute;
-    top: 10px;
-    right: 16px;
+.artisan-badge {
+    display: inline-block;
     padding: 4px 10px;
-    background: #F59E0B;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     border-radius: 4px;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 700;
-    color: #000;
-}
-
-.mock-trust {
-    display: flex;
-    gap: 8px;
-    padding: 16px;
-}
-
-.mock-trust-item {
-    flex: 1;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-}
-
-/* Immobilier Mockup */
-.mockup-immo .mockup-content {
-    background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
-}
-
-.mock-hero-immo {
-    padding: 20px 16px;
-}
-
-.mock-search-bar {
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 8px;
-    padding: 10px 12px;
-    gap: 10px;
-}
-
-.mock-search-bar span {
-    flex: 1;
-    font-size: 0.75rem;
-    color: #64748b;
-}
-
-.mock-search-btn {
-    width: 32px;
-    height: 32px;
-    background: var(--primary-gradient);
-    border-radius: 6px;
-}
-
-.mock-properties {
-    display: flex;
-    gap: 10px;
-    padding: 16px;
-    overflow: hidden;
-}
-
-.mock-property {
-    flex: 1;
-    min-width: 100px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.mock-property-img {
-    height: 60px;
-    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-}
-
-.mock-property-info {
-    padding: 8px;
-}
-
-.mock-property-price {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #0c4a6e;
-    margin-bottom: 4px;
-}
-
-.mock-property-detail {
-    height: 6px;
-    background: #e2e8f0;
-    border-radius: 3px;
-}
-
-/* Auto Mockup */
-.mockup-auto .mockup-content {
-    background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
-}
-
-.mock-hero-auto {
-    padding: 30px 16px;
-    text-align: center;
-}
-
-.mock-car-icon {
-    font-size: 2.5rem;
+    color: white;
     margin-bottom: 12px;
 }
 
-.mock-cars {
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.trust-item {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.7);
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+/* ===== IMMO ===== */
+.immo-screen {
+    background: linear-gradient(180deg, #0c4a6e 0%, #075985 100%);
+}
+
+.immo-search {
+    padding: 16px;
+}
+
+.search-box {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.search-label {
+    display: block;
+    font-size: 0.6rem;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.search-filters {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.filter-item {
+    padding: 6px 10px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    color: #334155;
+}
+
+.search-btn {
+    margin-left: auto;
+    width: 28px;
+    height: 28px;
+    background: var(--primary-gradient);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.immo-grid {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px;
+    overflow: hidden;
+}
+
+.property-card {
+    flex: 1;
+    min-width: 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.property-img {
+    height: 60px;
+    background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+    position: relative;
+}
+
+.property-img.img-2 {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}
+
+.property-img.img-3 {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+}
+
+.property-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    padding: 2px 6px;
+    background: var(--primary-blue);
+    border-radius: 3px;
+    font-size: 0.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+.property-badge.sold {
+    background: #ef4444;
+}
+
+.property-info {
+    padding: 8px;
+}
+
+.property-price {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0c4a6e;
+}
+
+.property-type {
+    display: block;
+    font-size: 0.55rem;
+    color: #64748b;
+    margin: 2px 0;
+}
+
+.property-loc {
+    font-size: 0.5rem;
+    color: #94a3b8;
+}
+
+/* ===== AUTO ===== */
+.auto-screen {
+    background: linear-gradient(180deg, #18181b 0%, #27272a 100%);
+}
+
+.auto-hero {
+    padding: 16px;
+    text-align: center;
+}
+
+.auto-hero h3 {
+    font-size: 1rem;
+}
+
+.auto-stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 12px;
+}
+
+.auto-stat {
+    text-align: center;
+}
+
+.stat-num {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.auto-stat span:last-child {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.auto-cards {
     display: flex;
     gap: 10px;
     padding: 0 16px;
 }
 
-.mock-car-card {
+.car-card {
     flex: 1;
-    height: 70px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.05);
     border-radius: 8px;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.car-img {
+    height: 50px;
+    background: linear-gradient(135deg, #3f3f46, #52525b);
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.car-img.car-2 {
+    background: linear-gradient(135deg, #44403c, #57534e);
+}
+
+.car-name {
+    display: block;
+    font-size: 0.65rem;
+    color: white;
+    font-weight: 500;
+}
+
+.car-price {
+    font-size: 0.7rem;
+    color: var(--primary-blue);
+    font-weight: 600;
 }
 
 /* Project Content */
 .project-content {
-    padding: 28px;
+    padding: 24px;
 }
 
 .project-large .project-content {
@@ -1063,34 +1321,104 @@ input, textarea, select {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
-    padding: 60px 28px 28px;
+    background: linear-gradient(to top, var(--bg-primary) 60%, transparent 100%);
+    padding: 60px 24px 24px;
 }
 
 .project-tags {
     display: flex;
     gap: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .tag {
     padding: 4px 12px;
     background: var(--bg-tertiary);
     border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-secondary);
 }
 
 .project-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .project-desc {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.project-result {
+    margin-top: 12px;
+}
+
+.result-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #22c55e;
+}
+
+/* Portfolio CTA */
+.portfolio-cta {
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+.portfolio-cta p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+/* Responsive Portfolio */
+@media (max-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .project-large {
+        grid-row: auto;
+    }
+    
+    .project-large .project-mockup {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .anonymized-notice {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .immo-grid {
+        flex-wrap: wrap;
+    }
+    
+    .property-card {
+        min-width: calc(50% - 5px);
+    }
+    
+    .property-card:nth-child(3) {
+        display: none;
+    }
 }
 
 /* -------------------- Pricing Section -------------------- */
@@ -1616,18 +1944,6 @@ input, textarea, select {
         order: -1;
     }
     
-    .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .project-large {
-        grid-row: auto;
-    }
-    
-    .project-large .project-mockup {
-        min-height: 250px;
-    }
-    
     .about-grid,
     .contact-grid {
         grid-template-columns: 1fr;
@@ -1678,10 +1994,6 @@ input, textarea, select {
     .hero-stats {
         flex-direction: column;
         gap: 24px;
-    }
-    
-    .portfolio-grid {
-        grid-template-columns: 1fr;
     }
     
     .form-row {
