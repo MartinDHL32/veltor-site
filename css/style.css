@@ -146,46 +146,34 @@ input, textarea, select {
 /* -------------------- Custom Cursor -------------------- */
 .cursor, .cursor-follower {
     position: fixed;
-    left: -100px;
-    top: -100px;
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: difference;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.15s ease;
+    transform: translate(-50%, -50%);
     display: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .cursor, .cursor-follower {
-        display: block;
-    }
-    
-    .cursor {
-        width: 8px;
-        height: 8px;
-        background: var(--text-primary);
-        transform: translate(-50%, -50%);
-    }
-    
-    .cursor-follower {
-        width: 40px;
-        height: 40px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        transform: translate(-50%, -50%);
-        transition: opacity 0.3s ease, transform 0.15s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-    }
-    
-    .cursor.active {
-        transform: translate(-50%, -50%) scale(0.5);
-    }
-    
-    .cursor-follower.active {
-        width: 60px;
-        height: 60px;
-        border-color: var(--primary-blue);
-    }
+.cursor {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor.active {
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.cursor-follower.active {
+    width: 60px;
+    height: 60px;
+    border-color: var(--primary-blue);
 }
 
 /* -------------------- Container -------------------- */
@@ -507,6 +495,19 @@ input, textarea, select {
 
 .stat {
     text-align: center;
+    position: relative;
+    padding: 0 24px;
+}
+
+.stat:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40px;
+    background: var(--border-color);
 }
 
 .stat-number, .stat-plus, .stat-percent {
@@ -525,8 +526,6 @@ input, textarea, select {
     font-size: 0.9rem;
     color: var(--text-muted);
     margin-top: 8px;
-    padding-top: 8px;
-    border-top: 2px solid var(--border-color);
 }
 
 @keyframes fadeInUp {
@@ -1978,6 +1977,14 @@ input, textarea, select {
         flex-wrap: wrap;
         gap: 24px 32px;
         justify-content: center;
+    }
+    
+    .stat {
+        padding: 0 16px;
+    }
+    
+    .stat:not(:last-child)::after {
+        display: none;
     }
     
     .stat-number, .stat-plus, .stat-percent {

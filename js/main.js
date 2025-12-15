@@ -83,59 +83,34 @@ function initCustomCursor() {
     // Check if device supports hover (not touch)
     if (!window.matchMedia('(hover: hover)').matches) return;
     
-    let mouseX = -100;
-    let mouseY = -100;
-    let cursorX = -100;
-    let cursorY = -100;
-    let followerX = -100;
-    let followerY = -100;
-    let isFirstMove = true;
+    // Show cursors
+    cursor.style.display = 'block';
+    follower.style.display = 'block';
     
+    let mouseX = 0;
+    let mouseY = 0;
+    let followerX = 0;
+    let followerY = 0;
+    
+    // Track mouse position
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         
-        // Show cursor on first move
-        if (isFirstMove) {
-            isFirstMove = false;
-            cursorX = mouseX;
-            cursorY = mouseY;
-            followerX = mouseX;
-            followerY = mouseY;
-            cursor.style.opacity = '1';
-            follower.style.opacity = '1';
-        }
+        // Move cursor directly (no lag)
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
     });
     
-    // Hide cursor when leaving window
-    document.addEventListener('mouseleave', () => {
-        cursor.style.opacity = '0';
-        follower.style.opacity = '0';
-    });
-    
-    document.addEventListener('mouseenter', () => {
-        cursor.style.opacity = '1';
-        follower.style.opacity = '1';
-    });
-    
-    // Smooth cursor animation
-    function animateCursor() {
-        // Cursor follows mouse directly
-        cursorX += (mouseX - cursorX) * 0.5;
-        cursorY += (mouseY - cursorY) * 0.5;
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        
-        // Follower has more lag
+    // Animate follower with lag
+    function animateFollower() {
         followerX += (mouseX - followerX) * 0.15;
         followerY += (mouseY - followerY) * 0.15;
         follower.style.left = followerX + 'px';
         follower.style.top = followerY + 'px';
-        
-        requestAnimationFrame(animateCursor);
+        requestAnimationFrame(animateFollower);
     }
-    
-    animateCursor();
+    animateFollower();
     
     // Hover effects on interactive elements
     const interactiveElements = document.querySelectorAll('a, button, .service-card, .project-card, .pricing-card');
