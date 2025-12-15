@@ -148,22 +148,25 @@ input, textarea, select {
     position: fixed;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999;
     transform: translate(-50%, -50%);
     display: none;
+    top: 0;
+    left: 0;
 }
 
 .cursor {
     width: 8px;
     height: 8px;
-    background: #fff;
+    background: #ffffff;
 }
 
 .cursor-follower {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: transparent;
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
 }
 
 .cursor.active {
@@ -493,13 +496,13 @@ input, textarea, select {
     animation: fadeInUp 0.8s ease 0.4s both;
 }
 
-.stat {
+.hero-stats .stat {
     text-align: center;
     position: relative;
     padding: 0 24px;
 }
 
-.stat:not(:last-child)::after {
+.hero-stats .stat:not(:last-child)::after {
     content: '';
     position: absolute;
     right: 0;
@@ -510,7 +513,9 @@ input, textarea, select {
     background: var(--border-color);
 }
 
-.stat-number, .stat-plus, .stat-percent {
+.hero-stats .stat-number, 
+.hero-stats .stat-plus, 
+.hero-stats .stat-percent {
     display: inline;
     font-size: 2.5rem;
     font-weight: 700;
@@ -521,11 +526,24 @@ input, textarea, select {
     line-height: 1;
 }
 
-.stat-label {
-    display: block;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-top: 8px;
+.hero-stats .stat-label {
+    display: block !important;
+    font-size: 0.9rem !important;
+    color: var(--text-muted) !important;
+    margin-top: 8px !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+}
+
+.hero-stats .stat-label::before,
+.hero-stats .stat-label::after {
+    display: none !important;
+    content: none !important;
 }
 
 @keyframes fadeInUp {
@@ -1979,19 +1997,21 @@ input, textarea, select {
         justify-content: center;
     }
     
-    .stat {
+    .hero-stats .stat {
         padding: 0 16px;
     }
     
-    .stat:not(:last-child)::after {
+    .hero-stats .stat:not(:last-child)::after {
         display: none;
     }
     
-    .stat-number, .stat-plus, .stat-percent {
+    .hero-stats .stat-number, 
+    .hero-stats .stat-plus, 
+    .hero-stats .stat-percent {
         font-size: 2rem;
     }
     
-    .stat-label {
+    .hero-stats .stat-label {
         font-size: 0.8rem;
     }
     

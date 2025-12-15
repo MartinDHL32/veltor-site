@@ -80,8 +80,8 @@ function initCustomCursor() {
     
     if (!cursor || !follower) return;
     
-    // Check if device supports hover (not touch)
-    if (!window.matchMedia('(hover: hover)').matches) return;
+    // Skip on touch devices
+    if ('ontouchstart' in window) return;
     
     let mouseX = 0;
     let mouseY = 0;
@@ -89,12 +89,11 @@ function initCustomCursor() {
     let followerY = 0;
     let started = false;
     
-    // Track mouse position
+    // Show cursors and track mouse
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         
-        // First move: show cursors and set initial position
         if (!started) {
             started = true;
             followerX = mouseX;
@@ -103,32 +102,28 @@ function initCustomCursor() {
             follower.style.display = 'block';
         }
         
-        // Move cursor directly (no lag)
         cursor.style.left = mouseX + 'px';
         cursor.style.top = mouseY + 'px';
     });
     
-    // Animate follower with lag
-    function animateFollower() {
+    // Animate follower
+    function animate() {
         if (started) {
-            followerX += (mouseX - followerX) * 0.12;
-            followerY += (mouseY - followerY) * 0.12;
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
             follower.style.left = followerX + 'px';
             follower.style.top = followerY + 'px';
         }
-        requestAnimationFrame(animateFollower);
+        requestAnimationFrame(animate);
     }
-    animateFollower();
+    animate();
     
-    // Hover effects on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .service-card, .project-card, .pricing-card');
-    
-    interactiveElements.forEach(el => {
+    // Hover effects
+    document.querySelectorAll('a, button, .service-card, .project-card, .pricing-card').forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursor.classList.add('active');
             follower.classList.add('active');
         });
-        
         el.addEventListener('mouseleave', () => {
             cursor.classList.remove('active');
             follower.classList.remove('active');
