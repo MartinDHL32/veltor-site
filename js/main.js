@@ -83,16 +83,39 @@ function initCustomCursor() {
     // Check if device supports hover (not touch)
     if (!window.matchMedia('(hover: hover)').matches) return;
     
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    let followerX = 0;
-    let followerY = 0;
+    let mouseX = -100;
+    let mouseY = -100;
+    let cursorX = -100;
+    let cursorY = -100;
+    let followerX = -100;
+    let followerY = -100;
+    let isFirstMove = true;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        
+        // Show cursor on first move
+        if (isFirstMove) {
+            isFirstMove = false;
+            cursorX = mouseX;
+            cursorY = mouseY;
+            followerX = mouseX;
+            followerY = mouseY;
+            cursor.style.opacity = '1';
+            follower.style.opacity = '1';
+        }
+    });
+    
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        follower.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        follower.style.opacity = '1';
     });
     
     // Smooth cursor animation
