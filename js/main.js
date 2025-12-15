@@ -18,18 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
 function initLoader() {
     const loader = document.getElementById('loader');
     
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            loader.classList.add('hidden');
-            document.body.classList.remove('loading');
-        }, 800);
-    });
+    if (!loader) return;
     
-    // Fallback: hide loader after max 3 seconds
-    setTimeout(() => {
+    // Hide loader after a short delay
+    const hideLoader = () => {
         loader.classList.add('hidden');
-        document.body.classList.remove('loading');
-    }, 3000);
+        document.body.style.overflow = '';
+    };
+    
+    // Try to hide on window load
+    if (document.readyState === 'complete') {
+        setTimeout(hideLoader, 500);
+    } else {
+        window.addEventListener('load', () => {
+            setTimeout(hideLoader, 500);
+        });
+    }
+    
+    // Fallback: force hide after 2 seconds max
+    setTimeout(hideLoader, 2000);
 }
 
 /* -------------------- Navbar -------------------- */
