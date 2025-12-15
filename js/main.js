@@ -204,32 +204,38 @@ function initContactForm() {
         `;
         submitBtn.disabled = true;
         
-        // Collect form data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        
-        // Simulate form submission (replace with actual API call)
+        // Send to Formspree
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             
-            // Success state
-            submitBtn.innerHTML = `
-                <span>Message envoyé !</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 6L9 17l-5-5"/>
-                </svg>
-            `;
-            submitBtn.style.background = '#22C55E';
-            
-            // Reset form
-            form.reset();
-            
-            // Reset button after delay
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
+            if (response.ok) {
+                // Success state
+                submitBtn.innerHTML = `
+                    <span>Message envoyé !</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                `;
+                submitBtn.style.background = '#22C55E';
+                
+                // Reset form
+                form.reset();
+                
+                // Reset button after delay
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            } else {
+                throw new Error('Erreur serveur');
+            }
             
         } catch (error) {
             // Error state
