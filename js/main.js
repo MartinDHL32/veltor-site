@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initCustomCursor();
     initAnimations();
-    initCounters();
     initContactForm();
 });
 
