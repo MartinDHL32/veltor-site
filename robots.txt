@@ -1,0 +1,18 @@
+# Robots.txt pour veltor.fr
+# https://veltor.fr/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://veltor.fr/sitemap.xml
+
+# Bloquer les fichiers non nécessaires
+Disallow: /js/
+Disallow: /css/
+
+# Autoriser les images
+Allow: /images/
+
+# Crawl-delay (optionnel)
+Crawl-delay: 1

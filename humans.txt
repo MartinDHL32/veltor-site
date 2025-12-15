@@ -1,0 +1,11 @@
+/* TEAM */
+Developer: Veltor
+Site: https://veltor.fr
+Contact: contact@veltor.fr
+Location: France
+
+/* SITE */
+Last update: 2024/12/15
+Language: French
+Standards: HTML5, CSS3, JavaScript ES6+
+Software: VS Code, Git
