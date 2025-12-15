@@ -501,7 +501,7 @@ input, textarea, select {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 60px;
+    gap: 48px;
     animation: fadeInUp 0.8s ease 0.4s both;
 }
 
@@ -509,7 +509,7 @@ input, textarea, select {
     text-align: center;
 }
 
-.stat-number {
+.stat-number, .stat-plus, .stat-percent {
     display: inline;
     font-size: 2.5rem;
     font-weight: 700;
@@ -517,19 +517,16 @@ input, textarea, select {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.stat-plus, .stat-percent {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary-purple);
+    line-height: 1;
 }
 
 .stat-label {
     display: block;
     font-size: 0.9rem;
     color: var(--text-muted);
-    margin-top: 4px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 2px solid var(--border-color);
 }
 
 @keyframes fadeInUp {
@@ -1977,8 +1974,18 @@ input, textarea, select {
     }
     
     .hero-stats {
-        flex-direction: column;
-        gap: 24px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px 32px;
+        justify-content: center;
+    }
+    
+    .stat-number, .stat-plus, .stat-percent {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
     }
     
     .form-row {
