@@ -59,6 +59,10 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
     <!-- Navigation simplifiée -->
     <nav class="navbar scrolled" id="navbar">
         <div class="nav-container">
@@ -89,7 +93,7 @@
         <ul>
             <li><strong>Nom :</strong> Veltor</li>
             <li><strong>Activité :</strong> Création de sites internet, développement d'applications web et CRM</li>
-            <li><strong>Email :</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="52313d3c263331261224373e263d207c3420">[email&#160;protected]</a></li>
+            <li><strong>Email :</strong> <span id="email-legal-1"></span></li>
             <li><strong>Pays :</strong> France</li>
         </ul>
         
@@ -108,7 +112,7 @@
         
         <h2>4. Données personnelles</h2>
         <p>Les informations recueillies via le formulaire de contact sont destinées à Veltor pour la gestion des demandes de devis et le suivi de la relation client.</p>
-        <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant. Pour exercer ces droits, contactez-nous à : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e4d41405a4f4d5a6e584b425a415c00485c">[email&#160;protected]</a></p>
+        <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant. Pour exercer ces droits, contactez-nous à : <span id="email-legal-2"></span></p>
         <p>Pour plus d'informations, consultez notre <a href="politique-confidentialite.html">Politique de Confidentialité</a>.</p>
         
         <h2>5. Cookies</h2>
@@ -127,5 +131,31 @@
         <h2>9. Contact</h2>
         <p>Pour toute question concernant ces mentions légales, vous pouvez nous contacter :</p>
         <ul>
-            <li><strong>Email :</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bad9d5d4cedbd9cefaccdfd6ced5c894dcc8">[email&#160;protected]</a></li>
-            <li><strong>Formulaire :</strong> <a href="/#contact">Page contac
+            <li><strong>Email :</strong> <span id="email-legal-3"></span></li>
+            <li><strong>Formulaire :</strong> <a href="/#contact">Page contact</a></li>
+        </ul>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p class="copyright">© 2025 Veltor - Création site internet pas cher. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        (function(){
+            var u = 'contact';
+            var d = 'veltor.fr';
+            var e = u + '@' + d;
+            var spans = ['email-legal-1', 'email-legal-2', 'email-legal-3'];
+            spans.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.textContent = e;
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -63,6 +63,10 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
     <!-- Navigation simplifiée -->
     <nav class="navbar scrolled" id="navbar">
         <div class="nav-container">
@@ -94,7 +98,7 @@
         <p>Le responsable du traitement des données personnelles est :</p>
         <ul>
             <li><strong>Veltor</strong></li>
-            <li>Email : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b6864657f6a687f4b7d6e677f6479256d79">[email&#160;protected]</a></li>
+            <li>Email : <span id="email-privacy-1"></span></li>
             <li>Site web : veltor.fr</li>
         </ul>
         
@@ -151,7 +155,7 @@
             <li><strong>Droit à la portabilité :</strong> recevoir vos données dans un format structuré</li>
             <li><strong>Droit d'opposition :</strong> vous opposer au traitement de vos données</li>
         </ul>
-        <p>Pour exercer ces droits, contactez-nous à : <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95f6fafbe1f4f6e1d5e3f0f9e1fae7bbf3e7">[email&#160;protected]</a></strong></p>
+        <p>Pour exercer ces droits, contactez-nous à : <strong><span id="email-privacy-2"></span></strong></p>
         
         <h2>8. Sécurité des données</h2>
         <p>Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données :</p>
@@ -182,5 +186,31 @@
         <h2>13. Contact</h2>
         <p>Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits, contactez-nous :</p>
         <ul>
-            <li><strong>Email :</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d2b1bdbca6b3b1a692a4b7bea6bda0fcb4a0">[email&#160;protected]</a></li>
-            <li><strong>Formulaire :</strong> <a href="/#contact">Page contac
+            <li><strong>Email :</strong> <span id="email-privacy-3"></span></li>
+            <li><strong>Formulaire :</strong> <a href="/#contact">Page contact</a></li>
+        </ul>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p class="copyright">© 2025 Veltor - Création site internet pas cher. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        (function(){
+            var u = 'contact';
+            var d = 'veltor.fr';
+            var e = u + '@' + d;
+            var spans = ['email-privacy-1', 'email-privacy-2', 'email-privacy-3'];
+            spans.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.textContent = e;
+            });
+        })();
+    </script>
+</body>
+</html>
