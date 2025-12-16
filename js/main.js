@@ -82,12 +82,12 @@ function initCustomCursor() {
     
     var mx = 0, my = 0, fx = 0, fy = 0;
     
-    document.onmousemove = function(e) {
+    document.addEventListener('mousemove', function(e) {
         mx = e.clientX;
         my = e.clientY;
         cursor.style.left = mx + 'px';
         cursor.style.top = my + 'px';
-    };
+    });
     
     function move() {
         fx += (mx - fx) * 0.15;
@@ -97,6 +97,20 @@ function initCustomCursor() {
         requestAnimationFrame(move);
     }
     move();
+    
+    // Hover effect on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .service-card, .project-card, .pricing-card, .faq-item');
+    
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('active');
+            follower.classList.add('active');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active');
+            follower.classList.remove('active');
+        });
+    });
 }
 
 /* -------------------- Scroll Animations -------------------- */
@@ -124,11 +138,11 @@ function initAnimations() {
     }, observerOptions);
     
     // Observe sections
-    const animatedSections = document.querySelectorAll('.services, .realisations, .pricing, .about, .contact');
+    const animatedSections = document.querySelectorAll('.services, .realisations, .pricing, .about, .contact, .faq');
     animatedSections.forEach(section => observer.observe(section));
     
     // Add animation classes to cards
-    document.querySelectorAll('.service-card, .project-card, .pricing-card').forEach((card, index) => {
+    document.querySelectorAll('.service-card, .project-card, .pricing-card, .faq-item').forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(40px)';
         card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
@@ -144,41 +158,9 @@ function initAnimations() {
         });
     }, { threshold: 0.1 });
     
-    document.querySelectorAll('.service-card, .project-card, .pricing-card').forEach(card => {
+    document.querySelectorAll('.service-card, .project-card, .pricing-card, .faq-item').forEach(card => {
         cardObserver.observe(card);
     });
-}
-
-/* -------------------- Animated Counters -------------------- */
-function initCounters() {
-    const counters = document.querySelectorAll('.stat-number[data-count]');
-    
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000; // 2 seconds
-                const step = target / (duration / 16); // 60fps
-                let current = 0;
-                
-                const updateCounter = () => {
-                    current += step;
-                    if (current < target) {
-                        counter.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                
-                updateCounter();
-                counterObserver.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    counters.forEach(counter => counterObserver.observe(counter));
 }
 
 /* -------------------- Contact Form -------------------- */
@@ -254,8 +236,6 @@ function initContactForm() {
                 submitBtn.disabled = false;
             }, 3000);
         }
-        
-        console.log('Form data:', data);
     });
     
     // Add floating label effect
