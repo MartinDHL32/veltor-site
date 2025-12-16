@@ -2074,3 +2074,115 @@ input, textarea, select {
         display: none;
     }
 }
+
+/* ================================================
+   VELTOR - Section FAQ (à ajouter à style.css)
+   ================================================ */
+
+/* -------------------- FAQ Section -------------------- */
+.faq {
+    padding: var(--section-padding) 0;
+    background: var(--bg-secondary);
+}
+
+.faq-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-base);
+}
+
+.faq-item:hover {
+    border-color: var(--border-hover);
+}
+
+.faq-item[open] {
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 20px rgba(91, 110, 244, 0.1);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    cursor: pointer;
+    list-style: none;
+    gap: 16px;
+}
+
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-question h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.faq-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    stroke: var(--text-muted);
+    transition: var(--transition-base);
+}
+
+.faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+    stroke: var(--primary-blue);
+}
+
+.faq-answer {
+    padding: 0 28px 24px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
+.faq-answer strong {
+    color: var(--text-primary);
+}
+
+/* Animation pour l'ouverture */
+.faq-item[open] .faq-answer {
+    animation: fadeIn 0.3s ease;
+}
+
+/* -------------------- Form Disclaimer -------------------- */
+.form-disclaimer {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 16px;
+}
+
+/* -------------------- Responsive FAQ -------------------- */
+@media (max-width: 768px) {
+    .faq-question {
+        padding: 20px;
+    }
+    
+    .faq-question h3 {
+        font-size: 1rem;
+    }
+    
+    .faq-answer {
+        padding: 0 20px 20px;
+    }
+}

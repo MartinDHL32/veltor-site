@@ -1,18 +1,56 @@
+# ================================================
 # Robots.txt pour veltor.fr
+# Création site internet pas cher - Agence web PME TPE
 # https://veltor.fr/robots.txt
+# ================================================
 
+# Règles pour tous les robots
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://veltor.fr/sitemap.xml
+# Autoriser l'indexation complète du site
+Allow: /index.html
+Allow: /images/
+Allow: /#services
+Allow: /#realisations
+Allow: /#tarifs
+Allow: /#faq
+Allow: /#about
+Allow: /#contact
 
-# Bloquer les fichiers non nécessaires
+# Bloquer les fichiers techniques non nécessaires à l'indexation
 Disallow: /js/
 Disallow: /css/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /node_modules/
 
-# Autoriser les images
+# Autoriser explicitement les images pour Google Images
+Allow: /images/*.jpg
+Allow: /images/*.png
+Allow: /images/*.svg
+Allow: /images/*.webp
+
+# Google Bot - Pas de restriction
+User-agent: Googlebot
+Allow: /
+
+# Google Images Bot
+User-agent: Googlebot-Image
 Allow: /images/
 
-# Crawl-delay (optionnel)
-Crawl-delay: 1
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# Sitemap - IMPORTANT
+Sitemap: https://veltor.fr/sitemap.xml
+
+# Crawl-delay recommandé (optionnel, respecté par certains bots)
+# Crawl-delay: 1
+
+# ================================================
+# Note: Ce fichier est optimisé pour maximiser
+# l'indexation du contenu principal tout en
+# évitant l'indexation des ressources techniques.
+# ================================================
