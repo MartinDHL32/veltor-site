@@ -1,6 +1,6 @@
 # ================================================
 # Robots.txt pour veltor.fr
-# Création site internet pas cher - Agence web PME TPE
+# Création site internet à moindre coût - Agence web PME TPE
 # https://veltor.fr/robots.txt
 # ================================================
 
